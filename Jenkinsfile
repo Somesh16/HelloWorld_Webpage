@@ -3,7 +3,8 @@ node{
       git 'https://github.com/Somesh16/HelloWorld_Webpage'
     }
     stage('Compile-Package'){
-      sh 'mvn package'
+      def mvnHome = tool name: 'M2_HOME', type: 'maven'
+        sh "${mvnHome}/bin/mvn package}"
     }
     
 }
