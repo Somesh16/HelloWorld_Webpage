@@ -8,6 +8,6 @@ node{
     }
     stage('Deploying to Tomcat Server'){
      sshPublisher(publishers: [sshPublisherDesc(configName: 'tomcat_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'opt/tomcat/webapps', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/Hello_World-0.0.1-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-      }
     }
+    
 }
