@@ -1,4 +1,5 @@
 node{
+    def pwd
     stage('SCM Checkout'){
       git 'https://github.com/Somesh16/HelloWorld_Webpage'
     }
@@ -8,9 +9,10 @@ node{
     }
     stage('Deploying to Tomcat Server'){
      sshagent(['Tomcat_server']) {
-         def pwd = sh 'pwd'
+           sh 'pwd'
          echo "${pwd}"
      sh 'scp -o StrictHostKeyChecking=no target/*war tomcatadmin@172.31.40.37://opt//tomcat//webapps'
+         sh 'pwd'
          echo "${pwd}"
       }
     }
