@@ -9,6 +9,8 @@ node{
     stage('Deploying to Tomcat Server'){
      sshagent(['tomcat-server']) {
      sh 'cd /opt'
+     def pw = sh 'pwd'
+         echo "{pw}"
       }
     }
 }
