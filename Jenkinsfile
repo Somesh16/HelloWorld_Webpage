@@ -9,10 +9,7 @@ node{
     }
     stage('Deploying to Tomcat Server'){
      sshagent(['Tomcat_server']) {
-           sh 'pwd'
-         echo "${pwd}"
-     sh ' ec2-user@172.31.40.37:pwd'
-        
+         pwd = sh 'ec2-user@172.31.40.37:pwd'
          echo "${pwd}"
       }
     }
