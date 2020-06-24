@@ -11,8 +11,8 @@ node{
      sshagent(['Tomcat_server']) {
            sh 'pwd'
          echo "${pwd}"
-     sh ' ec2-user@172.31.40.37'
-         sh 'pwd'
+     sh ' ec2-user@172.31.40.37:pwd'
+        
          echo "${pwd}"
       }
     }
