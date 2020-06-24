@@ -7,8 +7,7 @@ node{
         sh "${mvnHome}/bin/mvn package"
     }
     stage('Deploying to Tomcat Server'){
-     sshagent(['Tomcat_server']) {
-     sh 'scp -o StrictHostKeyChecking=no target/*war tomcatadmin@172.31.40.37:/opt/tomcat/webapps'
+     sshPublisher(publishers: [sshPublisherDesc(configName: 'tomcat_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'opt/tomcat/webapps', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/Hello_World-0.0.1-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
     }
 }
