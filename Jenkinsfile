@@ -10,6 +10,8 @@ node{
         stage('Deploying to Tomcat Server'){
      sshagent(['tomcat-server1']) {
      sh 'scp -o StrictHostKeyChecking=no target/*war tomcatadmin@172.31.40.37://opt//tomcat//webapps'
-     }
+        }
+        
+    }
     
 }
