@@ -11,7 +11,7 @@ node{
      sshagent(['Tomcat_server']) {
            sh 'pwd'
          echo "${pwd}"
-     sh 'scp -o StrictHostKeyChecking=no target/*war tomcatadmin@172.31.40.37://opt//tomcat//webapps'
+     sh ' tomcatadmin@172.31.40.37:/opt/tomcat/webapps ls'
          sh 'pwd'
          echo "${pwd}"
       }
