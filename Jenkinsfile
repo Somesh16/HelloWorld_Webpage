@@ -1,5 +1,4 @@
 node{
-    def pwd
     stage('SCM Checkout'){
       git 'https://github.com/Somesh16/HelloWorld_Webpage'
     }
