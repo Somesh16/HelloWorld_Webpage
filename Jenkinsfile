@@ -7,6 +7,7 @@ node{
         sh "${mvnHome}/bin/mvn package"
     }
   sshagent(['deployer_tomcat_user']) {
-   sh "-o StrictHostKeyChecking=no ec2-user@35.154.98.31: cd /opt/tomcat"   
+   sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@35.154.98.31:/opt/tomcat/webapps" 
+   sh "cd   -o StrictHostKeyChecking=no /opt/tomcat/webapps ec2-user@35.154.98.31"
     }
 }
