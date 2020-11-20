@@ -1,14 +1,25 @@
-node{
-    stage('SCM Checkout'){
-      git 'https://github.com/Somesh16/HelloWorld_Webpage'
+node
+{ 
+    def mavenHome =tool name:"Maven"
+    stage('Checkout code from github')
+    {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Github_Credentials', url: 'https://github.com/Somesh16/HelloWorld_Webpage.git']]])
     }
-    stage('Compile-Package'){
-      def mvnHome = tool name: 'M2_HOME', type: 'maven'
-        sh "${mvnHome}/bin/mvn package"
+    
+    stage('compile code using maven')
+    {
+        sh "${mavenHome}/bin/mvn compile"
     }
-    stage('Deploy on tomcat server'){
-        sshagent(['deployer_tomcat_user']) {
-           sh "scp -o StrictHostKeyChecking=no target/*war ec2-user@13.127.202.57:/opt/tomcat/webapps" 
+    
+    stage('Create Package')
+    {
+        sh "${mavenHome}/bin/mvn package"
     }
-  }      
+    stage('Deploying artifacts to tomcat server')
+    {
+        sshagent(['Tomcat_Server']) 
+        {
+            sh "scp -o StrictHostKeyChecking=no target/Hello_World-0.0.1-SNAPSHOT.war ec2-user@15.206.163.253:/opt/tomcat/webapps"
+        }
+    }
 }
